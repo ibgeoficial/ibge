@@ -1,0 +1,29 @@
+{
+  "name": "@ibge/noticias",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibgeoficial/ibge/tree/master/noticias"
+  },
+  "author": {
+    "name": "Fernando Mendonça de Almeida",
+    "email": "fernando.almeida@ibge.gov.br"
+  },
+  "keywords": [
+    "angular",
+    "ibge",
+    "noticias"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ibgeoficial/ibge/issues"
+  },
+  "module": "noticias.js",
+  "typings": "noticias.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}
