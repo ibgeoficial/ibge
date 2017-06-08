@@ -1,9 +1,10 @@
-import { Divulgacao, DivulgacoesPaginadas } from './';
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+
+import { Divulgacao, DivulgacoesPaginadas } from './';
 
 @Injectable()
 export class CalendarioService {
@@ -17,11 +18,12 @@ export class CalendarioService {
     this._headers.append('Accept', 'application/json; charset=utf-8');
   }
 
-  public getDivulgacoes(query: { qtd: number, de: string, ate: string }): Observable<DivulgacoesPaginadas> {
+  public getDivulgacoes(query: { qtd?: number, de?: string, ate?: string }): Observable<DivulgacoesPaginadas> {
     let params = new URLSearchParams();
-    params.append('qtd', query.qtd.toString());
-    params.append('de', query.de);
-    params.append('ate', query.ate);
+
+    if(query.qtd) { params.append('qtd', query.qtd.toString()); }
+    if(query.de)  { params.append('de',  query.de.toString());  }
+    if(query.ate) { params.append('ate', query.ate.toString()); }
 
     let options = new RequestOptions({
       headers: this._headers,
@@ -37,11 +39,12 @@ export class CalendarioService {
       });
   }
 
-  public getDivulgacoesPorPesquisa(pesquisa:string, query: { qtd: number, de: string, ate: string }): Observable<DivulgacoesPaginadas> {
+  public getDivulgacoesPorPesquisa(pesquisa:string, query: { qtd?: number, de?: string, ate?: string }): Observable<DivulgacoesPaginadas> {
     let params = new URLSearchParams();
-    params.append('qtd', query.qtd.toString());
-    params.append('de', query.de);
-    params.append('ate', query.ate);
+
+    if(query.qtd) { params.append('qtd', query.qtd.toString()); }
+    if(query.de)  { params.append('de',  query.de.toString());  }
+    if(query.ate) { params.append('ate', query.ate.toString()); }
 
     let options = new RequestOptions({
       headers: this._headers,

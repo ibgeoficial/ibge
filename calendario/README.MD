@@ -1,31 +1,23 @@
-# calendario
+# Calendário
 
-## Installation
+## Instalação
 
-To install this library, run:
+Para instalar a biblioteca, rode:
 
 ```bash
 $ npm install @ibge/calendario --save
 ```
 
-## Consuming your library
+## Usando a biblioteca
 
-Once you have published your library to npm, you can import your library in any Angular application by running:
-
-```bash
-$ npm install calendario
-```
-
-and then from your Angular `AppModule`:
+Após instalar a biblioteca, você deve importar o `CalendarioModule` no seu `AppModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-
-// Import your library
-import { SampleModule } from 'calendario';
+// Módulo do Calendário
+import { CalendarioModule } from '@ibge/calendario';
 
 @NgModule({
   declarations: [
@@ -33,9 +25,9 @@ import { SampleModule } from 'calendario';
   ],
   imports: [
     BrowserModule,
-
-    // Specify your library as an import
-    LibraryModule
+    
+    // Adicionar o CalendarioModule no AppModule, caso seja em um módulo interno basta importar como CalendarioModule
+    CalendarioModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -43,30 +35,35 @@ import { SampleModule } from 'calendario';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
+Uma vez importado, é possível consumir os serviços do calendário, recebendo a informação segundo a api de calendário `http://servicodados.ibge.gov.br/api/docs/calendario`
 
-```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
-<sampleComponent></sampleComponent>
+```typescript
+// Importar o serviço e interfaces, se necessário
+import { CalendarioService, Divulgacao, DivulgacoesPaginadas } from '@ibge/calendario';
+
+// ...
+
+  constructor(
+    // Injetar o serviço no construtor do componente
+    private _calendarioServ: CalendarioService
+  ) {}
+
+  ngOnInit(): void {
+    // Chamar os métodos disponíveis
+    this._calendarioServ.getDivulgacoes({
+      qtd: 10,
+      de: '2017-05-01',
+      ate: '2017-06-08'
+    }).subscribe((divulgacoesPaginadas: DivulgacoesPaginadas) => {
+      // Utilizar as divulgacoesPaginadas aqui
+    })
+  }
 ```
 
-## Development
+## Desenvolvimento
 
-To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
+Esse componente utilizou o generator do yeoman `https://github.com/jvandemo/generator-angular2-library`, os comandos utilizados podem ser encontrados na documentação
 
-```bash
-$ npm run build
-```
+## Licença
 
-To lint all `*.ts` files:
-
-```bash
-$ npm run lint
-```
-
-## License
-
-MIT © [Fernando Mendonça de Almeida](mailto:fernando.almeida@ibge.gov.br)
+MIT

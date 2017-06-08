@@ -1,20 +1,23 @@
 {
   "name": "@ibge/calendario",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ibgeoficial/calendario"
+    "url": "https://github.com/ibgeoficial/ibge/tree/master/calendario"
   },
   "author": {
     "name": "Fernando Mendonça de Almeida",
     "email": "fernando.almeida@ibge.gov.br"
   },
   "keywords": [
-    "angular"
+    "angular",
+    "ibge",
+    "calendario",
+    "divulgacoes"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ibgeoficial/calendario/issues"
+    "url": "https://github.com/ibgeoficial/ibge/issues"
   },
   "module": "calendario.js",
   "typings": "calendario.d.ts",

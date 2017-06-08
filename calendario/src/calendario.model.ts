@@ -10,7 +10,7 @@ export interface DivulgacoesPaginadas {
 }
 
 export interface Divulgacao {
-    id: number,
+    id?: number,
     titulo?: string,
     descricao?: string,
     data_divulgacao?: string,
