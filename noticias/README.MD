@@ -1,31 +1,23 @@
-# noticias
+# Noticias
 
-## Installation
+## Instalação
 
-To install this library, run:
-
-```bash
-$ npm install noticias --save
-```
-
-## Consuming your library
-
-Once you have published your library to npm, you can import your library in any Angular application by running:
+Para instalar a biblioteca, rode:
 
 ```bash
-$ npm install noticias
+$ npm install @ibge/noticias --save
 ```
 
-and then from your Angular `AppModule`:
+## Usando a biblioteca
+
+Após instalar a biblioteca, você deve importar o `NoticiasModule` no seu `AppModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-
-// Import your library
-import { SampleModule } from 'noticias';
+// Módulo de Notícias
+import { NoticiasModule } from '@ibge/noticias';
 
 @NgModule({
   declarations: [
@@ -33,9 +25,9 @@ import { SampleModule } from 'noticias';
   ],
   imports: [
     BrowserModule,
-
-    // Specify your library as an import
-    LibraryModule
+    
+    // Adicionar o NoticiasModule no AppModule, caso seja em um módulo interno basta importar como NoticiasModule
+    NoticiasModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -43,30 +35,33 @@ import { SampleModule } from 'noticias';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
+Uma vez importado, é possível consumir os serviços do calendário, recebendo a informação segundo a api de calendário `http://servicodados.ibge.gov.br/api/docs/noticias`
 
-```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
-<sampleComponent></sampleComponent>
+```typescript
+// Importar o serviço e interfaces, se necessário
+import { NoticiasService, Noticia, NoticiasPaginadas } from '@ibge/noticias';
+
+// ...
+
+  constructor(
+    // Injetar o serviço no construtor do componente
+    private _noticiasServ: NoticiasService
+  ) {}
+
+  ngOnInit(): void {
+    // Chamar os métodos disponíveis
+    this._noticiasServ.get({
+      qtd: 10
+    }).subscribe((noticiasPaginadas: NoticiasPaginadas) => {
+      // Utilizar as noticiasPaginadas aqui
+    })
+  }
 ```
 
-## Development
+## Desenvolvimento
 
-To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
+Esse componente utilizou o generator do yeoman `https://github.com/jvandemo/generator-angular2-library`, os comandos utilizados podem ser encontrados na documentação
 
-```bash
-$ npm run build
-```
+## Licença
 
-To lint all `*.ts` files:
-
-```bash
-$ npm run lint
-```
-
-## License
-
-MIT © [Fernando Mendonça de Almeida](mailto:fernando.almeida@ibge.gov.br)
+MIT

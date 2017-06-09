@@ -23,3 +23,9 @@
     {{ divulgacao.titulo }} - {{ divulgacao.data_divulgacao }}
   </li>
 </ul>
+
+<ul>
+  <li *ngFor="let noticia of noticias">
+    {{ noticia.titulo }} - {{ noticia.data_publicacao }}
+  </li>
+</ul>

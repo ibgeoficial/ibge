@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 
 import { CalendarioModule } from '@ibge/calendario';
+import { NoticiasModule } from '@ibge/noticias';
 
 import { AppComponent } from './app.component';
 
@@ -12,8 +12,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
-    CalendarioModule.forRoot()
+    CalendarioModule.forRoot(),
+    NoticiasModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
